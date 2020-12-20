@@ -1,0 +1,1 @@
+var urlBase = 'http://localhost/dws/libros';
