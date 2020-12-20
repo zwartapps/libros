@@ -27,7 +27,8 @@ function cargarLibros(){
             htmlLibros += ' <td>'+libro.titulo+'</td>';
             htmlLibros += ' <td>'+libro.stock+'</td>';
             htmlLibros += ' <td>'+libro.precio+'</td>';
-            htmlLibros += ' <td><button idLibro="'+libro.id+'" type="button" class="btn btn-danger btn-sm" onclick="eliminarLibro(this)"><i class="far fa-trash-alt"></i></button></td>';
+            htmlLibros += ' <td><button idLibro="'+libro.id+'" type="button" class="btn btn-danger btn-sm" onclick="eliminarLibro(this)"><i class="far fa-trash-alt"></i></button>'
+            htmlLibros += ' <button idLibro="'+libro.id+'" type="button" class="btn btn-warning btn-sm" onclick="editarLibro(this)"><i class="fa fa-pencil-square-o"></i></button></td>';
             htmlLibros += '</tr>';
         });
 
@@ -61,5 +62,21 @@ function guardarLibro() {
         });
     } else {
         // Modificación del libro con id = idLibro
+       
     }
+}
+
+function editarLibro(boton){
+    let idLibro = $(boton).attr('idLibro');
+
+    
+    getLibro(idLibro, function(libro){
+        $('#titulo').val(libro.titulo);
+        $('#idAutor').val(libro.idAutor);
+        $('#idEditorial').val(libro.idEditorial);
+        $('#isbn').val(libro.isbn);
+        $('#stock').val(libro.stock);
+        $('#precio').val(libro.precio);
+        $("#modalFormLibro").modal('show');
+       });
 }

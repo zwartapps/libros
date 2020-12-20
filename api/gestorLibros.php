@@ -1,17 +1,26 @@
 <?php
-require_once __DIR__.'/../db/class.GestorDB.php';
-require_once __DIR__.'/../class/class.Libro.php';
+require_once __DIR__ . '/../db/class.GestorDB.php';
+require_once __DIR__ . '/../class/class.Libro.php';
 
 $tarea = $_POST['tarea'];
 
-switch($tarea) {
+switch ($tarea) {
+    case 'getLibro':
+        $id = $_POST['id'];
+        
+        $libro = new Libro($id);
+
+        echo json_encode($libro->getAtributos());
+        break;
+
     case 'getLibros':
         $conexionDB = new GestorDB();
 
-        $libros = $conexionDB->getRecordsByParams(TABLA_LIBROS,['*'],null,'titulo ASC','FETCH_ASSOC');
+        $libros = $conexionDB->getRecordsByParams(TABLA_LIBROS, ['*'], null, 'titulo ASC', 'FETCH_ASSOC');
 
         echo json_encode($libros);
         break;
+
 
     case 'deleteLibro':
         $id = $_POST['idLibro'];
@@ -28,7 +37,7 @@ switch($tarea) {
 
             if ($eliminado instanceof PDOException) {
                 // Añade al log de errores el mensaje de la excepción
-                $respuesta['mensaje'] .= ' '.$eliminado->getMessage();
+                $respuesta['mensaje'] .= ' ' . $eliminado->getMessage();
             }
         }
 
@@ -56,12 +65,10 @@ switch($tarea) {
 
             if ($eliminado instanceof PDOException) {
                 // Añade al log de errores el mensaje de la excepción
-                $respuesta['mensaje'] .= ' '.$eliminado->getMessage();
+                $respuesta['mensaje'] .= ' ' . $eliminado->getMessage();
             }
         }
 
         echo json_encode($respuesta);
         break;
 }
-
-?>

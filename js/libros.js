@@ -60,5 +60,24 @@ function addLibro(titulo, idAutor, idEditorial, isbn, stock, precio, callback) {
         },
         type:"POST",
         async: true
+    });   
+}
+
+function getLibro(idLibro, callback){
+    $.ajax({
+        url:urlBase+"/api/gestorLibros.php",
+        success:function(result){
+            respuestaAJAX = JSON.parse(result);
+            callback(respuestaAJAX);
+        },
+        error:function(result){
+            callback('¡ERROR!');
+        },
+        data:{
+            tarea: 'getLibro',
+            id: idLibro
+        },
+        type:"POST",
+        async: true
     });
 }
