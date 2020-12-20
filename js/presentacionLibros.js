@@ -13,6 +13,14 @@ $(document).ready(function(){
 });
 
 function abrirModalFormularioLibro() {
+    idLibro = 0;
+
+    $('#titulo').val('');
+    $('#idAutor').val(1);
+    $('#idEditorial').val(1);
+    $('#isbn').val('');
+    $('#stock').val('0');
+    $('#precio').val('');
     $("#modalFormLibro").modal('show');
 }
 
@@ -37,7 +45,7 @@ function cargarLibros(){
 }
 
 function eliminarLibro(boton) {
-    let idLibro = $(boton).attr('idLibro');
+    idLibro = $(boton).attr('idLibro');
 
     deleteLibro(idLibro, function(respuesta){
         alert(respuesta.mensaje);
@@ -46,29 +54,32 @@ function eliminarLibro(boton) {
 }
 
 function guardarLibro() {
+    titulo = $('#titulo').val();
+    idLibro = $('#idAutor').val();
+    idEditorial = $('#idEditorial').val();
+    isbn = $('#isbn').val();
+    stock = $('#stock').val();
+    precio = $('#precio').val();
+
     if (idLibro == 0) {
         // Creación de un nuevo libro
-        titulo = $('#titulo').val();
-        idAutor = $('#idAutor').val();
-        idEditorial = $('#idEditorial').val();
-        isbn = $('#isbn').val();
-        stock = $('#stock').val();
-        precio = $('#precio').val();
-
-        addLibro(titulo,idAutor,idEditorial,isbn,stock,precio, function(respuesta){
+        addLibro(titulo, idLibro, idEditorial, isbn, stock, precio, function(respuesta){
             alert(respuesta.mensaje);
             $("#modalFormLibro").modal('hide');
             cargarLibros();
         });
     } else {
         // Modificación del libro con id = idLibro
-       
+        updateLibro(idLibro, titulo, idLibro, idEditorial, isbn, stock, precio, function(respuesta){
+            alert(respuesta.mensaje);
+            $("#modalFormLibro").modal('hide');
+            cargarLibros();
+        });
     }
 }
 
 function editarLibro(boton){
-    let idLibro = $(boton).attr('idLibro');
-
+    idLibro = $(boton).attr('idLibro');
     
     getLibro(idLibro, function(libro){
         $('#titulo').val(libro.titulo);

@@ -7,7 +7,7 @@ $tarea = $_POST['tarea'];
 switch ($tarea) {
     case 'getLibro':
         $id = $_POST['id'];
-        
+
         $libro = new Libro($id);
 
         echo json_encode($libro->getAtributos());
@@ -63,12 +63,43 @@ switch ($tarea) {
             $respuesta['exito'] = 0;
             $respuesta['mensaje'] = 'Ha ocurrido un error al intentar guardar el libro.';
 
-            if ($eliminado instanceof PDOException) {
+            if ($guardado instanceof PDOException) {
                 // Añade al log de errores el mensaje de la excepción
-                $respuesta['mensaje'] .= ' ' . $eliminado->getMessage();
+                $respuesta['mensaje'] .= ' ' . $guardado->getMessage();
             }
         }
 
         echo json_encode($respuesta);
         break;
+
+      
+        case 'updateLibro':
+            $libro = new Libro($_POST['id']);
+            $libro->titulo = $_POST['titulo'];
+            $libro->idAutor = $_POST['idAutor'];
+            $libro->idEditorial = $_POST['idEditorial'];
+            $libro->isbn = $_POST['isbn'];
+            $libro->stock = $_POST['stock'];
+            $libro->precio = $_POST['precio'];
+    
+            $respuesta = array();
+            $guardado = $libro->guardar();
+    
+            if ($guardado) {
+                $respuesta['exito'] = 1;
+                $respuesta['mensaje'] = 'El libro ha sido editado con éxito';
+            } else {
+                $respuesta['exito'] = 0;
+                $respuesta['mensaje'] = 'Ha ocurrido un error al intentar guardar el libro.';
+    
+                if ($guardado instanceof PDOException) {
+                    // Añade al log de errores el mensaje de la excepción
+                    $respuesta['mensaje'] .= ' ' . $guardado->getMessage();
+                }
+            }
+    
+            echo json_encode($respuesta);
+            break;
+        
+
 }
