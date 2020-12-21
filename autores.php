@@ -40,22 +40,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- FIN NOMBRE DEL AUTOR -->
-			
-			<!-- DESPLEGABLE AUTORES 
-            <div class="row">
-				<div class="col-md-12">
-					<div class="input-group mb-3">
-					   <div class="input-group-prepend">
-						  <span class="input-group-text" id="basic-addon1">Autor</span>
-					   </div>
-					   <select id="idAutor">
-					   </select>
-					</div>
-				</div>
-			</div>
-		 FIN DESPLEGABLE AUTORES -->
-
+			<!-- FIN NOMBRE DEL AUTOR -->	
              <!-- APELLIDOS -->
              <div class="row">
                  <div class="col-md-12">
@@ -68,30 +53,52 @@
                  </div>
              </div>
              <!-- FIN APELLIDOS -->
-
-             <!-- DESPLEGABLE EDITORIALES -->
-             <!-- <div class="row">
-                 <div class="col-md-12">
-                     <div class="input-group mb-3">
-                         <div class="input-group-prepend">
-                             <span class="input-group-text" id="basic-addon1">Editorial</span>
-                         </div>
-                         <select id="idEditorial">
-                         </select>
-                     </div>
-                 </div>
-             </div> -->
-             <!-- FIN DESPLEGABLE EDITORIALES -->
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success" onclick="guardarLibro()">Guardar</button>
+            <button type="button" class="btn btn-success" onclick="guardarAutor()">Guardar</button>
          </div>
       </div>
    </div>
 </div>
 <!--FIN MODAL FORMULARIO-->
 
+<!--MODAL LIBROS-->
+<div class="modal fade" id="modalLibros" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header bg-warning">
+            <h5 class="modal-title" id="exampleModalLongTitle">Libros</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+             <!-- APELLIDOS -->
+             <div class="row">
+                 <div class="col-md-12">
+                 <table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Titulo</th>
+							<th scope="col">ISBN</th>                      			
+						</tr>
+					</thead>
+					<tbody id="listadoAutoresLibros">
+						<!-- Rellenar con JS -->
+					</tbody>
+				</table>
+                 </div>
+             </div>
+             <!-- FIN APELLIDOS -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>           
+         </div>
+      </div>
+   </div>
+</div>
+<!--FIN MODAL LIBROS-->
 
 <section class="mt-3">
     <div class="container">

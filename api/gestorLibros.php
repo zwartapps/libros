@@ -7,17 +7,13 @@ $tarea = $_POST['tarea'];
 switch ($tarea) {
     case 'getLibro':
         $id = $_POST['id'];
-
         $libro = new Libro($id);
-
         echo json_encode($libro->getAtributos());
         break;
 
     case 'getLibros':
         $conexionDB = new GestorDB();
-
         $libros = $conexionDB->getRecordsByParams(TABLA_LIBROS, ['*'], null, 'titulo ASC', 'FETCH_ASSOC');
-
         echo json_encode($libros);
         break;
 
@@ -101,5 +97,13 @@ switch ($tarea) {
             echo json_encode($respuesta);
             break;
         
+
+            case 'getAutoresLibros':
+                $idAutor = $_POST['idAutor'];
+                $conexionDB = new GestorDB();
+                $libros = $conexionDB->getRecordsByParams(TABLA_LIBROS, ['*'], null , 'titulo ASC', 'FETCH_ASSOC');
+                echo json_encode($libros);
+                break;
+            
 
 }
