@@ -16,6 +16,9 @@
 
 
 <body>
+<!-- Incluimos el menú de navegación -->
+<?php include("./menu/menu.php"); ?>
+
 <!--MODAL FORMULARIO-->
 <div class="modal fade" id="modalFormLibro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -154,6 +157,8 @@
 </section>
 
 <footer class="footer">
+    <!-- Incluimos el menú de navegación -->
+    <?php include("footer.php"); ?>
 </footer>
 </body>
 </html>

@@ -56,7 +56,7 @@ function eliminarAutor(boton) {
             $.each(libros, function (index, libro) {
                 idLibro = libro.id;
                 deleteLibro(idLibro, function (respuesta) {
-                    alert(respuesta.mensaje);
+                 //   alert(respuesta.mensaje);
                     cargarLibros();
                 });
             });
