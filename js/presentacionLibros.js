@@ -46,7 +46,6 @@ function cargarLibros(){
 
 function eliminarLibro(boton) {
     idLibro = $(boton).attr('idLibro');
-
     deleteLibro(idLibro, function(respuesta){
         alert(respuesta.mensaje);
         cargarLibros();

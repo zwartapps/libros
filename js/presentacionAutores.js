@@ -2,18 +2,15 @@ var idAutor = 0;
 
 $(document).ready(function () {
     cargarAutores();
-
-    getAutores(function (autores) {
-        cargarSelectAutores('idAutor', autores);
-    });
-
-    getEditoriales(function (editoriales) {
-        cargarSelectEditoriales('idEditorial', editoriales);
-    });
-
-    //  cargarAutoresLibros();
-
-
+   
+        getAutores(function (autores) {
+            cargarSelectAutores('idAutor', autores);
+        });
+    
+        getEditoriales(function (editoriales) {
+            cargarSelectEditoriales('idEditorial', editoriales);
+        });
+  
 });
 
 function abrirModalFormularioAutor() {
@@ -23,7 +20,6 @@ function abrirModalFormularioAutor() {
     $('#apellidos').val('');
     $("#modalFormAutor").modal('show');
 }
-
 
 
 function cargarAutores() {
@@ -45,13 +41,29 @@ function cargarAutores() {
     });
 }
 
+
 function eliminarAutor(boton) {
-    idAutor = $(boton).attr('idAutor');
-    deleteAutor(idAutor, function (respuesta) {
-        alert(respuesta.mensaje);
-        cargarAutores();
-    });
+    var eliminar = confirm("Al eliminar el autor también se eliminarán sus libros!\n Continuar?");
+    if (eliminar == true) {
+        idAutor = $(boton).attr('idAutor');
+        deleteAutor(idAutor, function (respuesta) {
+            alert(respuesta.mensaje);
+            cargarAutores();
+        });
+
+        //eliminamos los libros asociados a ese autor
+        getAutoresLibros(function (libros) {
+            $.each(libros, function (index, libro) {
+                idLibro = libro.id;
+                deleteLibro(idLibro, function (respuesta) {
+                    alert(respuesta.mensaje);
+                    cargarLibros();
+                });
+            });
+        });
+    }
 }
+
 
 
 function editarAutor(boton) {
@@ -86,7 +98,6 @@ function guardarAutor() {
 }
 
 
-/*TODOOOOOOOOOOO****////
 function mostrarLibros(boton) {
     idAutor = $(boton).attr('idAutor');
 
