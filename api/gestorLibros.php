@@ -102,4 +102,11 @@ switch ($tarea) {
         echo json_encode($libros);
         break;
 
+        case 'getEditorialesLibros':
+            $idEditorial = $_POST['idEditorial'];
+            $conexionDB = new GestorDB();
+            $libros = $conexionDB->getRecordsByParams(TABLA_LIBROS, ['*'], 'idEditorial = ' . $idEditorial, 'titulo ASC', 'FETCH_ASSOC');
+            echo json_encode($libros);
+            break;
+
 }

@@ -16,7 +16,7 @@
             </li>
 
             <li id="menu-check-email" class="nav-item">
-                <a class="nav-link" href="<?php echo $GLOBALES['urlPrincipal'] ?>/checkEmail.php"><i class="fas fa-pen-nib fa-3x"></i><br>Editoriales</a>
+                <a class="nav-link" href="<?php echo $GLOBALES['urlPrincipal'] ?>/editoriales.php"><i class="fas fa-pen-nib fa-3x"></i><br>Editoriales</a>
             </li>
 
             <!--
