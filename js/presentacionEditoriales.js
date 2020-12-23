@@ -2,25 +2,21 @@ var idEditorial = 0;
 
 $(document).ready(function () {
     cargarEditoriales();
-   
-       getAutores(function (autores) {
-            cargarSelectAutores('idAutor', autores);
-        });
-    
-    
-      getEditoriales(function (editoriales) {
-            cargarSelectEditoriales('idEditorial', editoriales);
-        });
- 
+
+    getAutores(function (autores) {
+        cargarSelectAutores('idAutor', autores);
+    });
+
+    getEditoriales(function (editoriales) {
+        cargarSelectEditoriales('idEditorial', editoriales);
+    });
 });
 
 function abrirModalFormEditorial() {
     idEditorial = 0;
-
     $('#nombre').val('');
-     $("#modalFormEditorial").modal('show');
+    $("#modalFormEditorial").modal('show');
 }
-
 
 function cargarEditoriales() {
     getEditoriales(function (editoriales) {
@@ -29,7 +25,7 @@ function cargarEditoriales() {
         $.each(editoriales, function (index, editorial) {
             htmlEditoriales += '<tr>';
             htmlEditoriales += ' <td>' + editorial.id + '</td>';
-            htmlEditoriales += ' <td>' + editorial.nombre + '</td>';           
+            htmlEditoriales += ' <td>' + editorial.nombre + '</td>';
             htmlEditoriales += ' <td><button idEditorial="' + editorial.id + '" type="button" class="btn btn-danger btn-sm" onclick="eliminarEditorial(this)"><i class="far fa-trash-alt"></i></button>'
             htmlEditoriales += ' <button idEditorial="' + editorial.id + '" type="button" class="btn btn-warning btn-sm" onclick="editarEditorial(this)"><i class="fa fa-pencil-square-o"></i></button>';
             htmlEditoriales += ' <button idEditorial="' + editorial.id + '" type="button" class="btn btn-primary btn-sm" onclick="mostrarLibros(this)"><i class="fas fa-info-circle"></i></button></td>';
@@ -55,7 +51,7 @@ function eliminarEditorial(boton) {
             $.each(libros, function (index, libro) {
                 idLibro = libro.id;
                 deleteLibro(idLibro, function (respuesta) {
-                 //   alert(respuesta.mensaje);
+                    //   alert(respuesta.mensaje);
                     cargarLibros();
                 });
             });
@@ -67,14 +63,14 @@ function eliminarEditorial(boton) {
 function editarEditorial(boton) {
     idEditorial = $(boton).attr('idEditorial');
     getEditorial(idEditorial, function (editorial) {
-        $('#nombre').val(editorial.nombre);    
+        $('#nombre').val(editorial.nombre);
         $("#modalFormEditorial").modal('show');
     });
 }
 
 
 function guardarEditorial() {
-    nombre = $('#nombre').val(); 
+    nombre = $('#nombre').val();
 
     if (idEditorial == 0) {
         // Creación de un nuevo editorial
@@ -84,7 +80,7 @@ function guardarEditorial() {
             cargarEditoriales();
         });
     } else {
-        // Modificación del autor con id = editorial
+        // Modificación del editorial con id = editorial
         updateEditorial(idEditorial, nombre, function (respuesta) {
             alert(respuesta.mensaje);
             $("#modalFormEditorial").modal('hide');
@@ -96,7 +92,8 @@ function guardarEditorial() {
 
 function mostrarLibros(boton) {
     idEditorial = $(boton).attr('idEditorial');
-
+    
+    //mostramos los libros de un editorial en concreto
     $("#modalLibros").modal('show');
 
     getEditorialesLibros(function (libros) {

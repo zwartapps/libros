@@ -33,7 +33,7 @@
                </button>
             </div>
             <div class="modal-body">
-               <!-- NOMBRE DEL Editorial -->
+               <!-- NOMBRE DEL EDITORIAL -->
                <div class="row">
                   <div class="col-md-12">
                      <div class="input-group mb-3">
@@ -44,7 +44,7 @@
                      </div>
                   </div>
                </div>
-               <!-- FIN NOMBRE DEL Editorial -->
+               <!-- FIN NOMBRE DEL EDITORIAL -->
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -66,7 +66,6 @@
                </button>
             </div>
             <div class="modal-body">
-               <!-- APELLIDOS -->
                <div class="row">
                   <div class="col-md-12">
                      <table class="table">
@@ -82,7 +81,6 @@
                      </table>
                   </div>
                </div>
-               <!-- FIN APELLIDOS -->
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -109,24 +107,24 @@
          </div>
          <!-- FIN PANEL DE ACCIONES -->
 
-         		<!-- TABLA DE EDITORIALES -->
-        <div class="row mt-4">
-			<div class="col-md-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">ID</th>
-                     <th scope="col">Nombre</th>
-                     <th scope="col">Acciones</th>	
-						</tr>
-					</thead>
-					<tbody id="listadoEditoriales">
-						<!-- Rellenar con JS -->
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- FIN TABLA DE EDITORIALES -->
+         <!-- TABLA DE EDITORIALES -->
+         <div class="row mt-4">
+            <div class="col-md-12">
+               <table class="table">
+                  <thead>
+                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Acciones</th>
+                     </tr>
+                  </thead>
+                  <tbody id="listadoEditoriales">
+                     <!-- Rellenar con JS -->
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <!-- FIN TABLA DE EDITORIALES -->
 
    </section>
 

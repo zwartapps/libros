@@ -7,9 +7,7 @@ $tarea = $_POST['tarea'];
 switch ($tarea) {
     case 'getEditoriales':
         $conexionDB = new GestorDB();
-
         $editoriales = $conexionDB->getRecordsByParams(TABLA_EDITORIALES, ['*'], null, 'nombre ASC', 'FETCH_ASSOC');
-
         echo json_encode($editoriales);
         break;
 
@@ -64,35 +62,29 @@ switch ($tarea) {
                 $respuesta['mensaje'] .= ' ' . $guardado->getMessage();
             }
         }
-
         echo json_encode($respuesta);
         break;
 
 
-        case 'deleteEditorial':
-            $id = $_POST['idEditorial'];
-            $editorial = new Editorial($id);
-    
-            $respuesta = array();
-            $eliminado = $editorial->eliminar();
-            if ($eliminado) {
-                $respuesta['exito'] = 1;
-                $respuesta['mensaje'] = 'El editorial ha sido eliminado con éxito';
-            } else {
-                $respuesta['exito'] = 0;
-                $respuesta['mensaje'] = 'Ha ocurrido un error al intentar eliminar el editorial.';
-    
-                if ($eliminado instanceof PDOException) {
-                    // Añade al log de errores el mensaje de la excepción
-                    $respuesta['mensaje'] .= ' ' . $eliminado->getMessage();
-                }
+    case 'deleteEditorial':
+        $id = $_POST['idEditorial'];
+        $editorial = new Editorial($id);
+
+        $respuesta = array();
+        $eliminado = $editorial->eliminar();
+        if ($eliminado) {
+            $respuesta['exito'] = 1;
+            $respuesta['mensaje'] = 'El editorial ha sido eliminado con éxito';
+        } else {
+            $respuesta['exito'] = 0;
+            $respuesta['mensaje'] = 'Ha ocurrido un error al intentar eliminar el editorial.';
+
+            if ($eliminado instanceof PDOException) {
+                // Añade al log de errores el mensaje de la excepción
+                $respuesta['mensaje'] .= ' ' . $eliminado->getMessage();
             }
-            echo json_encode($respuesta);
+        }
+        echo json_encode($respuesta);
 
-
-            break;
-
-
-
-
+        break;
 }

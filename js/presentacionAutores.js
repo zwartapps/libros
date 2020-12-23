@@ -9,18 +9,15 @@ $(document).ready(function () {
     
         getEditoriales(function (editoriales) {
             cargarSelectEditoriales('idEditorial', editoriales);
-        });
-  
+        });  
 });
 
 function abrirModalFormularioAutor() {
     idAutor = 0;
-
     $('#nombre').val('');
     $('#apellidos').val('');
     $("#modalFormAutor").modal('show');
 }
-
 
 function cargarAutores() {
     getAutores(function (autores) {
@@ -36,7 +33,6 @@ function cargarAutores() {
             htmlAutores += ' <button idAutor="' + autor.id + '" type="button" class="btn btn-primary btn-sm" onclick="mostrarLibros(this)"><i class="fas fa-info-circle"></i></button></td>';
             htmlAutores += '</tr>';
         });
-
         $('#listadoAutores').html(htmlAutores);
     });
 }
@@ -102,7 +98,8 @@ function mostrarLibros(boton) {
     idAutor = $(boton).attr('idAutor');
 
     $("#modalLibros").modal('show');
-
+    
+    //Mostramos los libros de un autor en concreto
     getAutoresLibros(function (libros) {
         let htmlAutoresLibros = '';
 

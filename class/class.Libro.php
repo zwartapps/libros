@@ -72,7 +72,6 @@ class Libro {
         $gestorDB = new GestorDB();
         $clavesPrimarias = array('id' => $this->id);
         $resultado = $gestorDB->deleteDB(TABLA_LIBROS,$clavesPrimarias);
-
         return $resultado;
     }
 
@@ -80,5 +79,3 @@ class Libro {
         return get_object_vars($this);
     }
 }
-
-?>

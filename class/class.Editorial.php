@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__.'/../db/class.GestorDB.php';
 
 class Editorial {
@@ -75,5 +74,3 @@ class Editorial {
         return get_object_vars($this);
     }
 }
-
-?>
